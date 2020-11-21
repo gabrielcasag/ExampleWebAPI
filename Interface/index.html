@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fone List</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body ng-app="foneList">
+    <div ng-controller="foneListController">
+      <div class="jumbotron">
+        <span>{{appName}}</span>
+
+        <table class="table table-striped">
+          <thead>
+            <th></th>
+            <th>Name</th>
+            <th>Fone</th>
+          </thead>
+          <tbody>
+            <tr
+              ng-class="{ checked : client.check }"
+              ng-repeat="client in clients"
+            >
+              <td>
+                <input type="checkbox" name="check" ng-model="client.check" />
+              </td>
+              <td>{{client.name}}</td>
+              <td>{{client.fone}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr />
+
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          ng-model="client.name"
+          placeholder="Fone"
+        />
+        <input
+          class="form-control"
+          type="text"
+          name="fone"
+          ng-model="client.fone"
+          placeholder="Name"
+        />
+        <hr />
+        <button
+          class="btn btn-primary btn-block"
+          ng-click="addClient(client)"
+          ng-disabled="!client.name || !client.fone"
+        >
+          Add Client
+        </button>
+        <button
+          class="btn btn-danger btn-block"
+          ng-click="deleteClient(clients)"
+        >
+          Delete Client
+        </button>
+      </div>
+    </div>
+
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/bootstrap/js/jquery.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./scripts.js"></script>
+  </body>
+</html>

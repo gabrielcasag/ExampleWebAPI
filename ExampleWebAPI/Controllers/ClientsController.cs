@@ -9,34 +9,31 @@ using System.Web.Http;
 
 namespace ExemploWebAPI.Controllers
 {
-    public class ClientsController : ApiController
+  public class ClientsController : ApiController
+  {
+    [HttpGet]
+    public List<Client> listClients()
     {
+      return clientsList;
+    }
 
-        private static List<Client> clientsList = new List<Client>();
-
-        [HttpGet]
-        public List<Client> listClients()
-        {
-            return clientsList;
-        }
-
-        [HttpPost]
-        public void insertClient(string name)
-        {
-            if (!string.IsNullOrEmpty(name))
-            {
-                clientsList.Add(new Client(name));
-            }
-
-        }
-
-        [HttpDelete]
-        public void removeClient(string name)
-        {
-            var idToDelete = clientsList.IndexOf(clientsList.First(x => x.Name.Equals(name)));
-
-            clientsList.RemoveAt(idToDelete);
-        }
+    [HttpPost]
+    public void insertClient(string name)
+    {
+      if (!string.IsNullOrEmpty(name))
+      {
+        clientsList.Add(new Client(name));
+      }
 
     }
+
+    [HttpDelete]
+    public void removeClient(string name)
+    {
+      var idToDelete = clientsList.IndexOf(clientsList.First(x => x.Name.Equals(name)));
+
+      clientsList.RemoveAt(idToDelete);
+    }
+
+  }
 }
